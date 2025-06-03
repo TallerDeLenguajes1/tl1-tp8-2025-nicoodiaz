@@ -39,3 +39,85 @@ foreach (Tareas tareas in tareasPendientes)
     Console.WriteLine($"El Duracion de la tarea es: {tareas.Duracion} horas");
     Console.WriteLine("------");
 }
+
+//Nueva lista para mover las tareas realizadas
+List<Tareas> tareasRealizadas = new List<Tareas>();
+
+int idTareaAMover = 0;
+Console.WriteLine("Ingrese el ID de la tarea que quiere marcar como completada");
+idTareaAMover = int.Parse(Console.ReadLine());
+
+//Creo la tarea a mover en null
+Tareas tareaAMover = null;
+//Recorro la lista buscando algun ID que coincida
+foreach (Tareas tareasPosiblesAMover in tareasPendientes)
+{
+    if (tareasPosiblesAMover.TareaID == idTareaAMover)
+    {
+        //Si conincide, le asigno la tarea esa, a la tarea inicializada en null
+        tareaAMover = tareasPosiblesAMover;
+    }
+}
+//Si la lista a mover, no es null, entonces la muevo a realizadas y despues la elimino
+if (tareaAMover != null)
+{
+    tareasRealizadas.Add(tareaAMover);
+    tareasPendientes.Remove(tareaAMover);
+    Console.WriteLine("La tarea se movio con exito");
+}
+else
+{
+    //Si no se encontro ningun ID, entonces muestra esto por pantalla
+    Console.WriteLine("No hay una tarea con ese ID.");
+}
+
+Console.WriteLine("----Despues de la eliminacion---- ¿?Si es que hay");
+
+foreach (Tareas tareas in tareasPendientes)
+{
+    Console.WriteLine("------");
+    Console.WriteLine($"El ID de la tarea es: {tareas.TareaID}");
+    Console.WriteLine($"La Descripcion de la tarea es: {tareas.Descripcion}");
+    Console.WriteLine($"El Duracion de la tarea es: {tareas.Duracion} horas");
+    Console.WriteLine("------");
+}
+
+Console.WriteLine("----Despues de agregar la lista de realizadas---- ¿?Si es que hay");
+
+foreach (Tareas tareas in tareasRealizadas)
+{
+    Console.WriteLine("------");
+    Console.WriteLine($"El ID de la tarea es: {tareas.TareaID}");
+    Console.WriteLine($"La Descripcion de la tarea es: {tareas.Descripcion}");
+    Console.WriteLine($"El Duracion de la tarea es: {tareas.Duracion} horas");
+    Console.WriteLine("------");
+}
+Console.WriteLine("----Para buscar por descripcion----");
+BuscarTareaPorDescripcion("Documentar codigo");
+
+void BuscarTareaPorDescripcion(string descripcionIngresada/* , List<Tareas> tareasPendientes */)
+{
+    Tareas tareaEncontrada = null;
+    foreach (Tareas item in tareasPendientes)
+    {
+        if (descripcionIngresada == item.Descripcion)
+        {
+            tareaEncontrada = item;
+            Console.WriteLine($"ID = {tareaEncontrada.TareaID} | Descripcion = {tareaEncontrada.Descripcion} | Duracion = {tareaEncontrada.Duracion}");
+        }
+
+    }
+}
+
+
+
+
+// Solo codigo para recordar por ahora
+
+/* for (int i = 0; i < tareasPendientes.Count; i++)
+{
+    if (tareasPendientes[i].Duracion == 20)
+    {
+        tareasPendientes.RemoveAt(i);
+    }
+} */

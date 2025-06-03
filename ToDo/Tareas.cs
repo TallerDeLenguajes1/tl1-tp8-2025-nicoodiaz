@@ -15,6 +15,7 @@ namespace EspacioTareas
             this.TareaID = tareaID;
             this.Descripcion = descripcion;
             this.Duracion = duracion;
-        }        
+        }
+        
     }
 }
