@@ -169,7 +169,7 @@ do
         Console.WriteLine("Ingrese una opcion nuevamente");
         opcion = 0;
     }
-} while (opcion == 5);
+} while (opcion != 5);
 
 
     //Funcion para buscar la tarea mediante descripcion
