@@ -49,7 +49,7 @@ do
     Interfacess.Guiones();
     var pedirOpcion = Console.ReadLine();
     bool resultadoSwitch = int.TryParse(pedirOpcion, out opcion);
-    if (resultadoSwitch && opcion > 0 && opcion < 6)
+    if (resultadoSwitch && opcion > 0 && opcion <= 7)
     {
         switch (opcion)
         {
@@ -95,7 +95,10 @@ do
                 Interfacess.Guiones();
                 break;
             case 6:
-                MostrarHistorial(Operaciones.ObtenerHistorial());
+
+            //Funcion para poder mostrar el historial
+                MostrarHistorial(Operaciones.Historial);
+                //MostrarHistorial(Operaciones.ObtenerHistorial());
                 break;
         }
     }
@@ -105,18 +108,22 @@ Interfacess.Guiones();
 Interfacess.Salida();
 Interfacess.Guiones();
 
+//Paso como parametro la lista de historial
 void MostrarHistorial(List<Operacion> historial)
 {
     Console.WriteLine("----HISTORIAL------");
+    //Si esta vacio (No se realizo ninguna operacion)
     if (historial.Count == 0)
     {
         Console.WriteLine("No hay historial para mostrar");
     }
     else
     {
+        //Recorro el listado item por item
         foreach (var item in historial)
         {
             string opStr = "";
+            //Dependiendo del tipo de operador, devuelve
             switch (item.Operador)
             {
                 case TipoOperacion.Suma:

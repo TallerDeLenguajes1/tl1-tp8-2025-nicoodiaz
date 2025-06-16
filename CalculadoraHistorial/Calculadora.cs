@@ -4,11 +4,12 @@ namespace EspacioCalculadora
 {
     public class Calculadora
     {
-        private double dato;
-        private List<Operacion> historial;
-        public double Resultado { get => dato; }
+        private double dato; //Este es el numero fijo, digamos el resultadoAnterior
+        private List<Operacion> historial;//Lista para poder guardar las operaciones realizadas y tner el historial
+        public double Resultado { get => dato; } //Propiedad para poder acceder al valor
+        public List<Operacion> Historial { get => historial; } 
 
-        //Constructor
+        //Constructor, se le pasa el numero inicial, al que se le desea operar
         public Calculadora(double dato)
         {
             this.dato = dato;
@@ -16,9 +17,9 @@ namespace EspacioCalculadora
         }
         public void Sumar(double termino)
         {
-            Operacion nuevaOperacion = new Operacion(dato, termino, TipoOperacion.Suma);
-            historial.Add(nuevaOperacion);
-            dato = nuevaOperacion.Resultado;
+            Operacion nuevaOperacion = new Operacion(dato, termino, TipoOperacion.Suma); //Se crea un nuevo objeto operacion, pasandole el resultado anteror / el nuevo valor = termino / Y el tipo de operador
+            historial.Add(nuevaOperacion); // Se agrega el objeto a la lista del historial 
+            dato = nuevaOperacion.Resultado; //Se le asigna a dato(El resultado anterior o el actual segun se vea) el resultado de la operacion
         }
         public void Restar(double termino)
         {
@@ -47,7 +48,7 @@ namespace EspacioCalculadora
             historial.Add(nuevaOperacion);
             dato = nuevaOperacion.Resultado;
         }
-        public List<Operacion> ObtenerHistorial()
+        public List<Operacion> ObtenerHistorial() //Funcion que sirve solamente para obtener el historial y poder pasarlo como parametro 
         {
             return historial;
         }
